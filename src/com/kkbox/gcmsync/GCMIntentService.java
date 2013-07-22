@@ -7,9 +7,9 @@ import android.util.Log;
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
 
-public class KKGCMIntentService extends GCMBaseIntentService {
+public class GCMIntentService extends GCMBaseIntentService {
 	
-	private final static String TAG = KKGCMIntentService.class.getSimpleName();
+	private final static String TAG = GCMIntentService.class.getSimpleName();
 	private final static String SENDER_ID = "885901097683";
 	
 	private static KKGCMListener listener;
@@ -27,7 +27,7 @@ public class KKGCMIntentService extends GCMBaseIntentService {
 			GCMRegistrar.register(context, SENDER_ID);
 		} else {
 			KKGCMServer.connect("act=register&regId="+regId, null);
-			Log.v(TAG, "Already registered: " + regId);
+			Log.i(TAG, "Already registered: " + regId);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class KKGCMIntentService extends GCMBaseIntentService {
 		listener = gcmListener;
 	}
 	
-	public KKGCMIntentService() {
+	public GCMIntentService() {
         super(SENDER_ID);
 	}
 	
@@ -46,12 +46,12 @@ public class KKGCMIntentService extends GCMBaseIntentService {
 	
 	@Override
 	protected void onError(Context context, String arg1) {
-		Log.d(TAG, "onError: " + arg1);
+		Log.e(TAG, "onError: " + arg1);
 	}
 
 	@Override
 	protected void onMessage(Context context, Intent intent) {
-		Log.d(TAG, "onMessage: " + intent);
+		Log.i(TAG, "onMessage: " + intent);
 		
 		final String message = intent.getExtras().getString("message");
 		if("sync".equals(message)){
@@ -61,13 +61,13 @@ public class KKGCMIntentService extends GCMBaseIntentService {
 
 	@Override
 	protected void onRegistered(Context ctx, String regId) {
-		Log.d(TAG, "onRegistered: " + regId);
+		Log.i(TAG, "onRegistered: " + regId);
 		KKGCMServer.connect("act=register&regId="+regId, null);
 	}
 	
 	@Override
 	protected void onUnregistered(Context arg0, String arg1) {
-		Log.d(TAG, "onUnregistered: " + arg1);
+		Log.i(TAG, "onUnregistered: " + arg1);
 	}
 
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 
-import com.kkbox.gcmsync.KKGCMIntentService.KKGCMListener;
+import com.kkbox.gcmsync.GCMIntentService.KKGCMListener;
 import com.kkbox.gcmsync.KKGCMServer.KKConnectListener;
 
 public class MainActivity extends Activity {
@@ -29,8 +29,8 @@ public class MainActivity extends Activity {
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
 	    listView.setAdapter(adapter);
 	    
-	    KKGCMIntentService.registerGCM(this);
-	    KKGCMIntentService.registerGCMListener(new KKGCMListener(){
+	    GCMIntentService.registerGCM(this);
+	    GCMIntentService.registerGCMListener(new KKGCMListener(){
 			@Override
 			public void onUpdate() {
 				syncList();

@@ -41,7 +41,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".KKGCMIntentService" />
+        <service android:name=".GCMIntentService" />
     </application>
 
 </manifest>

@@ -39,7 +39,7 @@ public class KKGCMServer {
 				if(listener != null){
 					try {
 						final JSONObject resJson = new JSONObject(EntityUtils.toString(res.getEntity()));
-						Log.e(TAG, "resJson="+resJson);
+						Log.d(TAG, "resJson="+resJson);
 						listener.onResponse(resJson);
 					} catch (Exception e) {
 						e.printStackTrace();
