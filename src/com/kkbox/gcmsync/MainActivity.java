@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 
 import com.kkbox.gcmsync.GCMIntentService.KKGCMListener;
-import com.kkbox.gcmsync.KKGCMServer.KKConnectListener;
+import com.kkbox.gcmsync.KKDataServer.KKConnectListener;
 
 public class MainActivity extends Activity {
 
@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
     }
 
 	private void syncList() {
-		KKGCMServer.connect("act=pull", new KKConnectListener() {
+		KKDataServer.connect("act=pull", new KKConnectListener() {
 			@Override
 			public void onResponse(JSONObject res) {
 				try {
@@ -68,13 +68,13 @@ public class MainActivity extends Activity {
 		if(item.getItemId() == R.id.action_add){
 			list.add("Item "+ (list.size() + 1));
 			adapter.notifyDataSetChanged();
-			KKGCMServer.connect("act=push&count=" + list.size(), null);
+			KKDataServer.connect("act=push&count=" + list.size(), null);
 		}
 		else if(item.getItemId() == R.id.action_del){
 			if(list.size() > 0){
 				list.remove(list.size()-1);
 				adapter.notifyDataSetChanged();
-				KKGCMServer.connect("act=push&count="+ list.size(), null);
+				KKDataServer.connect("act=push&count="+ list.size(), null);
 			}
 		}
 		return true;

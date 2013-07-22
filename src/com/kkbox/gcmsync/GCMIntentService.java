@@ -26,7 +26,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		if (regId.equals("")) {
 			GCMRegistrar.register(context, SENDER_ID);
 		} else {
-			KKGCMServer.connect("act=register&regId="+regId, null);
+			KKDataServer.connect("act=register&regId="+regId, null);
 			Log.i(TAG, "Already registered: " + regId);
 		}
 	}
@@ -62,7 +62,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	@Override
 	protected void onRegistered(Context ctx, String regId) {
 		Log.i(TAG, "onRegistered: " + regId);
-		KKGCMServer.connect("act=register&regId="+regId, null);
+		KKDataServer.connect("act=register&regId="+regId, null);
 	}
 	
 	@Override
